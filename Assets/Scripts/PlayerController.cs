@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private int hiScore;
     private int hiLevel;
     public GameObject scoreText;
+    public GameObject progressPanel;
     public GameObject playerProgress;
     public GameObject DeadPanel;
     public GameObject LevelDonePanel;
@@ -53,8 +54,8 @@ public class PlayerController : MonoBehaviour
     private int scoreJumping = 50;
     private int scoreLaneChange = 25;
     private System.Random rnd;
-    private float progressMinX = -325;
-    private float progressMaxX = 325;
+    private float progressMinX = 19; // -325;
+    private float progressMaxX = 765; // 325;
     private float levelDuration = 60f;
     public bool levelDone;
     private float timePlayStarted = 0f;
@@ -125,6 +126,8 @@ public class PlayerController : MonoBehaviour
                 LevelDonePanel.SetActive(true);
                 LevelDonePanel.GetComponentInChildren<Button>().Select();
             }
+            progressMinX = 30;
+            progressMaxX = (progressPanel.transform.localPosition.x * -2) - 30;
             float progressLength = progressMaxX - progressMinX;
             float progressX = progressMinX + (progressLength * percentComplete);
             playerProgress.transform.localPosition = new Vector3(progressX, -17.4f, 0);
